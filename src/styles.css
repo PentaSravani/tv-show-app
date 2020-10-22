@@ -1,0 +1,35 @@
+html, body { 
+    height: 100%; 
+}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;  
+}
+.title {
+    padding-left: 13px;
+    padding-top: 8px;
+}
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+.error {
+    color:red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+.back-button {
+    color :#007bff;
+    padding-top: 104px;
+    padding-left: 13px;
+}
+.main-content {
+    overflow: auto;
+    padding-bottom: 30px;
+}

@@ -1,0 +1,48 @@
+<div class="back-button">
+    <button class="btn btn-primary" (click)="goBack()">{{back}}</button>
+</div>
+<h4 class="title">{{title}}</h4>
+<div class="main-content">
+    <div *ngIf="episodeInfo.length > 0;else noDetails">
+        <div *ngFor="let episode of episodeInfo">
+            <div class="row">
+                <div class="col-md-4 episode-image">
+                    <div *ngIf="episode.image;else otherImage">
+                        <img src="{{episode.image.medium}}" class="img-fluid image-size rounded" alt="{{episode.name}}">
+                    </div>
+                    <ng-template #otherImage>
+                        <img src="/assets/no-image-found.jpg" class="img-fluid no-image-size rounded"
+                            alt="{{episode.name}}">
+                    </ng-template>
+                    <div *ngIf="episode.number; else otherNumber">
+                        <h5>{{episodeNumber}} {{episode.number}}</h5>
+                    </div>
+                    <ng-template #otherNumber>
+                        <h5>{{episodeNumber}} {{noNumber}}</h5>
+                    </ng-template>
+                </div>
+                <div class="col-md-8">
+                    <div *ngIf="episode.name;else otherName">
+                        <h5>{{episode.name}}</h5>
+                    </div>
+                    <ng-template #otherName>
+                        <h5>{{nameUnknown}}</h5>
+                    </ng-template>
+                    <div *ngIf="episode.airdate;else otherAirdate">
+                        <h6>{{aired}}: {{episode.airdate}}</h6>
+                    </div>
+                    <ng-template #otherAirdate>
+                        <h6>{{aired}}: {{unknown}}}</h6>
+                    </ng-template>
+                    <div *ngIf="episode.summary">
+                        <p class="summary" [innerHtml]=episode.summary></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noDetails>
+        <div class="message">{{message}}</div>
+    </ng-template>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+</div>

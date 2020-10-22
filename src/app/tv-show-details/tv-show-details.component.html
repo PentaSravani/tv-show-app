@@ -1,0 +1,79 @@
+<div class="back-button">
+    <button class="btn btn-primary" (click)="goBack()">{{back}}</button>
+</div>
+<h4 class="title">{{selectedShow?.name}}</h4>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-3 show-image">
+            <div *ngIf="selectedShow?.image;else otherImage">
+                <img src="{{selectedShow?.image.medium}}" class="img-fluid show-image-size rounded"
+                    alt="{{selectedShow?.name}}">
+            </div>
+            <ng-template #otherImage>
+                <img src="/assets/no-image-found.jpg" class="img-fluid no-image-size rounded"
+                    alt="{{selectedShow?.name}}">
+            </ng-template>
+        </div>
+        <div class="col-md-9">
+            <div class="details">
+                <div *ngIf="selectedShow?.genres;else otherGenre">
+                    <h5>{{genres}}: {{selectedShow?.genres}}</h5>
+                </div>
+                <ng-template #otherGenre>
+                    <h5>{{genre}}: {{unknown}}</h5>
+                </ng-template>
+                <div *ngIf="selectedShow?.rating.average;else otherRating">
+                    <h5>{{rating}} {{selectedShow?.rating.average}}/10</h5>
+                </div>
+                <ng-template #otherRating>
+                    <h5>{{noRating}}</h5>
+                </ng-template>
+                <div *ngIf="selectedShow?.premiered;else otherPremiered">
+                    <h5>{{aired}}: {{selectedShow?.premiered}}</h5>
+                </div>
+                <ng-template #otherPremiered>
+                    <h5>{{aired}}: {{unknown}}</h5>
+                </ng-template>
+                <div *ngIf="selectedShow?.language;else otherLanguage">
+                    <h5>{{language}}: {{selectedShow?.language}}</h5>
+                </div>
+                <ng-template #otherLanguage>
+                    <h5>{{language}}: {{unknown}}</h5>
+                </ng-template>
+            </div>
+            <div *ngIf="selectedShow?.summary">
+                <p class="summary" [innerHtml]=selectedShow?.summary></p>
+            </div>
+            <h5 class="text-center">
+                <div *ngIf="selectedShow?.officialSite">
+                    <a href="{{selectedShow?.officialSite}}" target="_blank">{{officialSite}}</a>
+                </div>
+            </h5>
+        </div>
+    </div>
+
+    <h4 class="season-title">{{seasonTitle}}</h4>
+    <div *ngFor="let season of seasonInfo">
+        <div class="column">
+            <a routerLink="/episode/{{season.id}}">
+                <div *ngIf="season.image;else other">
+                    <img src="{{season?.image?.medium}}" class="img-fluid image-size rounded" alt="{{season.name}}">
+                    <h6 class="season-number">{{seasonNumber}} {{season.number}}</h6>
+                </div>
+                <ng-template #other>
+                    <img src="/assets/no-image-found.jpg" class="img-fluid no-image-size rounded" alt="{{season.name}}">
+                    <h6 class="no-image-number">{{seasonNumber}} {{season.number}}</h6>
+                </ng-template>
+            </a>
+        </div>
+    </div>
+
+    <h4 class="cast-title">{{castTitle}}</h4>
+    <div *ngFor="let cast of castInfo">
+        <div class="column">
+            <img src="{{cast.person.image.medium}}" class="img-fluid image-size rounded" alt="{{cast.person.name}}">
+            <h6>{{cast.person.name}}</h6>
+        </div>
+    </div>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+</div>
