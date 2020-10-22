@@ -3,8 +3,8 @@
 </div>
 <h4 class="title">{{title}}</h4>
 <div class="main-content">
-    <div *ngIf="episodeInfo.length > 0;else noDetails">
-        <div *ngFor="let episode of episodeInfo">
+    <ng-container *ngIf="episodeInfo.length > 0;else noDetails">
+        <ng-container *ngFor="let episode of episodeInfo">
             <div class="row">
                 <div class="col-md-4 episode-image">
                     <div *ngIf="episode.image;else otherImage">
@@ -39,8 +39,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </ng-container>
+    </ng-container>
     <ng-template #noDetails>
         <div class="message">{{message}}</div>
     </ng-template>

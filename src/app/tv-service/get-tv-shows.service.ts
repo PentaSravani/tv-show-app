@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ITvShow } from '../i-tv-show';
-import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GetTvShowsService {
   API_URL = `${environment.baseUrl}api.tvmaze.com`;
-  constructor(private http: HttpClient, private location: Location) { }
+  constructor(private http: HttpClient) { }
 
   getShows(): Observable<ITvShow> {
     return this.http.get<ITvShow>(`${this.API_URL}/shows`).pipe(
@@ -54,10 +53,6 @@ export class GetTvShowsService {
       errorMessage = `Error Code: ${error.status} \n Message: ${error.message}`;
     }
     return throwError(errorMessage);
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
 }

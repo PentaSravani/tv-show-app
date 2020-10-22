@@ -11,5 +11,5 @@ export interface ITvShow {
   image?: { medium: string; original: string };
   person?: string;
   airdate?: string;
-  _embedded?: { episodes?: [], cast?: [], seasons?: [] };
+  _embedded?: any;
 }

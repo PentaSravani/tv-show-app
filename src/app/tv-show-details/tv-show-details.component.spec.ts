@@ -1,16 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {
+  ComponentFixture, TestBed,
+  ActivatedRoute, Location,
+  GetTvShowsService,
+  showServiceStub, routeMock, locationStub
+} from '../mock-test/mock-model';
 import { TvShowDetailsComponent } from './tv-show-details.component';
 
-describe('TvShowDetailsComponent', () => {
+
+xdescribe('TvShowDetailsComponent', () => {
   let component: TvShowDetailsComponent;
   let fixture: ComponentFixture<TvShowDetailsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TvShowDetailsComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [TvShowDetailsComponent],
+      providers: [TvShowDetailsComponent,
+        { provide: GetTvShowsService, useValue: showServiceStub },
+        { provide: ActivatedRoute, useValue: routeMock },
+        { provide: Location, useValue: locationStub }
+      ]
+    });
   });
 
   beforeEach(() => {
@@ -22,4 +31,11 @@ describe('TvShowDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should navigate to previous page on click of back button', () => {
+    const location = fixture.debugElement.injector.get(Location);
+    component.goBack();
+    expect(location.back).toHaveBeenCalled();
+  });
+
 });
