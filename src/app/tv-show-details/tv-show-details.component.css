@@ -1,0 +1,114 @@
+.show-image{
+    padding-top: 11px;
+    padding-left: 28px;
+}
+.image-size{
+    width: 65%;
+}
+.show-image-size{
+    width: 70%;
+}
+.no-image-size{
+    width: 71%;
+}
+.details{
+    padding-top: 7px;
+}
+.summary{
+    text-align: justify;
+    padding-top: 4px;
+    font-size: 20px;
+}
+.column {
+    float: left;
+    padding-left: 15px;
+}
+.season-title{
+    padding-left: 14px;
+}
+.cast-title{
+    clear: both;
+    padding-left: 14px;
+}
+.season-number,.no-image-number{
+    text-decoration: none;
+    color: black;
+    padding-right: 65px;
+}
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.title{ 
+    text-align: center; 
+    padding-top: 0px; 
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
+    .image-size{ 
+        width: 80%;
+    }
+    .show-image-size{ 
+        width: 100%
+    }
+    .column{ 
+        width: 25%; 
+    }
+    .summary{ 
+        font-size: 15px; 
+    }
+    .no-image-size{ 
+        width: 95%; 
+    }
+    h5{ 
+        font-size: 1rem;
+    }
+    h6 {
+        font-size: 0.95rem;
+    }    
+}
+@media only screen and (min-width: 320px) and (max-width: 500px)  {
+    .row{ 
+        justify-content: left; 
+    }
+    .show-image-size{ 
+        width: 100%
+    }
+    .alignment{ 
+        justify-content: center; 
+        padding-left: 0px; 
+    }
+    .image-size{
+        width: 100%
+    }
+    .column{ 
+        width: 50%;
+    }
+    .back-button{
+        padding-top: 68px; 
+        padding-left: 13px;
+    }
+    h5{ 
+        font-size: 1rem;
+    }
+    h6 {
+        font-size: 0.9rem;
+    } 
+    .summary{ 
+        padding-left: 13px; 
+        font-size: 15px;
+    }
+    .details{ 
+        padding-left: 13px;
+    }
+    .no-image-size{ 
+        width: 100%;
+    }
+    .no-image-number{ 
+        padding-top: 35px;
+    }
+    .title{ 
+        margin-bottom: 0px;
+    }
+}
+
+

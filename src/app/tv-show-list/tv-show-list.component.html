@@ -1,0 +1,50 @@
+<div *ngIf="showList.length > 0; else noShows">
+    <!-- Displaying Popular shows based on RATING -->
+    <h4 class="popular-show-title">{{title}}</h4>
+    <div class="scroll-menu">
+        <span *ngFor="let show of popularShowList">
+            <a routerLink="/details/{{show.id}}">
+                <div *ngIf="show.image;else otherImage">
+                    <img src="{{show.image.medium}}" class="img-fluid rounded" alt="{{show.name}}">
+                </div>
+                <ng-template #otherImage>
+                    <img src="/assets/no-image-found.jpg" class="img-fluid rounded" alt="{{show.name}}">
+                </ng-template>
+                <div *ngIf="show.rating?.average;else otherRating">
+                    <h6>{{rating}} {{show.rating.average}}/10</h6>
+                </div>
+                <ng-template #otherRating>
+                    <h6>{{noRating}}</h6>
+                </ng-template>
+            </a>
+        </span>
+    </div>
+    <div class="popular-shows"></div>
+    <!-- Displaying Tv shows based on GENRE -->
+    <div *ngFor="let show of genreShowList">
+        <h4 class="genre-show-title">{{show.genre}}</h4>
+        <div class="scroll-menu">
+            <span *ngFor="let show of show.show">
+                <a routerLink="/details/{{show.id}}">
+                    <div *ngIf="show.image;else otherImage">
+                        <img src="{{show.image.medium}}" class="img-fluid rounded" alt="{{show.name}}">
+                    </div>
+                    <ng-template #otherImage>
+                        <img src="/assets/no-image-found.jpg" class="img-fluid rounded" alt="{{show.name}}">
+                    </ng-template>
+                    <div *ngIf="show.rating?.average;else otherRating">
+                        <h6>{{rating}} {{show.rating.average}}/10</h6>
+                    </div>
+                    <ng-template #otherRating>
+                        <h6>{{noRating}}</h6>
+                    </ng-template>
+                </a>
+            </span>
+        </div>
+        <br>
+    </div>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+</div>
+<ng-template #noShows>
+    <div class="message popular-show-title">{{showMessage}}</div>
+</ng-template>

@@ -1,0 +1,16 @@
+.page-not-found {
+    display: grid;
+    padding-top: 104px;
+}
+.btn{
+    width: 32%;
+}
+@media only screen and (min-width: 320px) and (max-width: 500px)  {
+    .btn{
+        width: 36%;
+    }
+    .page-not-found {
+        text-align: center;
+        padding-top: 70px;
+    }
+}

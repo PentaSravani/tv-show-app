@@ -1,0 +1,32 @@
+<div class="back-button">
+    <button class="btn btn-primary" (click)="goBack()">{{back}}</button>
+</div>
+<div class="main-content">
+    <div *ngIf="searchResult && searchResult.length > 0;else noResult">
+        <h4 class="title">{{title}}</h4>
+        <div *ngFor="let show of searchResult">
+            <div class="column">
+                <a routerLink="/details/{{show.show.id}}">
+                    <div *ngIf="show.show.image;else other">
+                        <img src="{{show.show.image.medium}}" class="img-fluid rounded" alt="{{show.show.name}}">
+                        <div *ngIf="show.show.rating?.average;else otherRating">
+                            <h6>{{rating}} {{show.show.rating.average}}/10</h6>
+                        </div>
+                        <ng-template #otherRating>
+                            <h6>{{noRating}}</h6>
+                        </ng-template>
+                    </div>
+                    <ng-template #other>
+                        <img src="/assets/no-image-found.jpg" class="img-fluid no-image-size rounded"
+                            alt="{{show.show.name}}">
+                        <h6 class="no-rating-text">{{noRating}}</h6>
+                    </ng-template>
+                </a>
+            </div>
+        </div>
+    </div>
+    <ng-template #noResult>
+        <div class="message">{{message}}</div>
+    </ng-template>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+</div>
