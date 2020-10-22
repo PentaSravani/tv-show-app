@@ -1,6 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { GetTvShowsService } from '../tv-service/get-tv-shows.service';
-import { showServiceStub, SHOW_OBJECT } from '../tv-service/mock-tv-shows-service';
+import {
+  TestBed,
+  GetTvShowsService,
+  showServiceStub, SHOW_OBJECT
+} from '../mock-test/mock-model';
 import { TvShowListComponent } from './tv-show-list.component';
 
 describe('TvShowListComponent', () => {
@@ -11,7 +13,7 @@ describe('TvShowListComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [TvShowListComponent],
       providers: [TvShowListComponent, { provide: GetTvShowsService, useValue: showServiceStub }]
-    })
+    });
     component = TestBed.inject(TvShowListComponent);
     showService = TestBed.inject(GetTvShowsService);
   });
@@ -38,17 +40,8 @@ describe('TvShowListComponent', () => {
   });
 
   it('get unique genre list', () => {
-    let expectedUniqueGenreList = ['Drama', 'Science-Fiction', 'Thriller', 'Horror', 'Action'];
+    const expectedUniqueGenreList = ['Drama', 'Science-Fiction', 'Thriller', 'Horror', 'Action'];
     const uniqueGenreList = component.getUniqueGenreArray(SHOW_OBJECT);
     expect(uniqueGenreList.length).toEqual(expectedUniqueGenreList.length);
   });
-
-  it('get shows based on genre', () => {
-    let expectedGenreShows = [];
-    showServiceStub.getGenreShows().subscribe(shows => expectedGenreShows = shows);
-    let genreList = ['Drama', 'Horror', 'Action'];
-    const genreShows = component.getGenreShows(genreList, SHOW_OBJECT);
-    expect(genreShows).toBe(expectedGenreShows);
-  });
-
 });

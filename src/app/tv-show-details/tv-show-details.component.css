@@ -17,7 +17,7 @@
 .summary{
     text-align: justify;
     padding-top: 4px;
-    font-size: 20px;
+    font-size: 15px;
 }
 .column {
     float: left;
@@ -52,9 +52,6 @@ a:hover{
     }
     .column{ 
         width: 25%; 
-    }
-    .summary{ 
-        font-size: 15px; 
     }
     .no-image-size{ 
         width: 95%; 
@@ -94,8 +91,7 @@ a:hover{
         font-size: 0.9rem;
     } 
     .summary{ 
-        padding-left: 13px; 
-        font-size: 15px;
+        padding-left: 13px;
     }
     .details{ 
         padding-left: 13px;

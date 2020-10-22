@@ -6,11 +6,11 @@ import { TvShowDetailsComponent } from './tv-show-details/tv-show-details.compon
 import { TvShowListComponent } from './tv-show-list/tv-show-list.component';
 import { TvShowSearchComponent } from './tv-show-search/tv-show-search.component';
 
-const routes: Routes = [
-  { path: 'home', component: TvShowListComponent},
+export const routes: Routes = [
+  { path: 'home', component: TvShowListComponent },
   { path: 'details/:id', component: TvShowDetailsComponent },
   { path: 'episode/:id', component: EpisodeDetailsComponent },
-  { path: 'search/:searchString', component: TvShowSearchComponent},
+  { path: 'search/:searchString', component: TvShowSearchComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

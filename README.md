@@ -31,3 +31,7 @@ ng test
 
 ## Linting
 ng lint
+
+## Handling Error
+I have handled error in the service file using Http Error methods
+Alternate Way : Using Interceptor
