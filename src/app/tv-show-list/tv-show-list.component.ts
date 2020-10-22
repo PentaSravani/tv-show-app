@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITvShow } from '../i-tv-show';
-import { GetTvShowsService } from '../tv-service/get-tv-shows.service';
-import { CONSTANTS } from '../tv-show-constants';
+import { CONSTANTS, ITvShow, GetTvShowsService } from '../tv-show-model';
 
 @Component({
   selector: 'app-tv-show-list',
@@ -11,7 +9,7 @@ import { CONSTANTS } from '../tv-show-constants';
 export class TvShowListComponent implements OnInit {
   public showList: ITvShow[] = [];
   public popularShowList: ITvShow[];
-  public genreShowList: ITvShow[]
+  public genreShowList: ITvShow[];
   public errorMessage: string;
 
   public title: string = CONSTANTS.showTitle;
@@ -24,11 +22,11 @@ export class TvShowListComponent implements OnInit {
     this.getTvShows.getShows().subscribe(
       (data) => {
         this.showList = this.getShowArray(data);
-        //Popular Shows based on rating
+        // Popular Shows based on rating
         this.popularShowList = this.getPopularShows(this.showList);
         this.popularShowList = this.getSortedShows(this.popularShowList);
 
-        //Tv Shows based on genre
+        // Tv Shows based on genre
         let genreList: string[] = [];
         genreList = this.getUniqueGenreArray(this.showList);
         this.genreShowList = this.getGenreShows(genreList, this.showList);
@@ -49,7 +47,7 @@ export class TvShowListComponent implements OnInit {
   }
 
   getSortedShows(popularShowList): ITvShow[] {
-    popularShowList.sort(function (a, b) {
+    popularShowList.sort((a: any, b: any) => {
       return a.rating.average - b.rating.average;
     });
     return popularShowList;
@@ -67,8 +65,8 @@ export class TvShowListComponent implements OnInit {
     return uniqueGenreList;
   }
 
-  getGenreShows(genreList, showList) {
-    let showArrayOnGenre = [];
+  getGenreShows(genreList: any[], showList: any[]): any[] {
+    const showArrayOnGenre = [];
     genreList.forEach(item => {
       const shows = showList.filter(show => show.genres.includes(item));
       const showslist = { genre: item, show: shows };

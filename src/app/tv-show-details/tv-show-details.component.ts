@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { GetTvShowsService } from '../tv-service/get-tv-shows.service';
-import { ITvShow } from '../i-tv-show';
-import { CONSTANTS } from '../tv-show-constants';
-
+import {
+  CONSTANTS, ITvShow,
+  ActivatedRoute,
+  GetTvShowsService,
+  Location
+} from '../tv-show-model';
 @Component({
   selector: 'app-tv-show-details',
   templateUrl: './tv-show-details.component.html',
   styleUrls: ['./tv-show-details.component.css']
 })
 export class TvShowDetailsComponent implements OnInit {
-  public selectedShow: ITvShow;
-  public castInfo: ITvShow[];
-  public seasonInfo: ITvShow[];
-  public errorMessage: string;
-  public allData: any;
   public back: string = CONSTANTS.back;
   public genres: string = CONSTANTS.genre;
   public unknown: string = CONSTANTS.unknown;
@@ -26,7 +22,13 @@ export class TvShowDetailsComponent implements OnInit {
   public seasonTitle: string = CONSTANTS.seasonTitle;
   public castTitle: string = CONSTANTS.castTitle;
   public seasonNumber: string = CONSTANTS.seasonNumber;
-  constructor(private route: ActivatedRoute, private getTvShowsService: GetTvShowsService) { }
+
+  public selectedShow: ITvShow;
+  public castInfo: ITvShow[];
+  public seasonInfo: ITvShow[];
+  public errorMessage: string;
+  public allData: any;
+  constructor(private route: ActivatedRoute, private getTvShowsService: GetTvShowsService, private location: Location) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -46,6 +48,6 @@ export class TvShowDetailsComponent implements OnInit {
       });
   }
   goBack(): void {
-    this.getTvShowsService.goBack();
+    this.location.back();
   }
 }

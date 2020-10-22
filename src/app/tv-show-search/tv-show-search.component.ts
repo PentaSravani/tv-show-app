@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GetTvShowsService } from '../tv-service/get-tv-shows.service';
-import { ITvShow } from '../i-tv-show';
-import { CONSTANTS } from '../tv-show-constants';
+import {
+  CONSTANTS, ITvShow,
+  Router, ActivatedRoute,
+  GetTvShowsService,
+  Location
+} from '../tv-show-model';
+
 
 @Component({
   selector: 'app-tv-show-search',
@@ -18,7 +21,7 @@ export class TvShowSearchComponent implements OnInit {
   public noRating: string = CONSTANTS.noRating;
 
   public searchResult: ITvShow[];
-  constructor(private router: Router, private route: ActivatedRoute, private getTvShow: GetTvShowsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private getTvShow: GetTvShowsService, private location: Location) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -42,7 +45,7 @@ export class TvShowSearchComponent implements OnInit {
   }
 
   goBack(): void {
-    this.getTvShow.goBack();
+    this.location.back();
   }
 
 }

@@ -1,8 +1,8 @@
-<div *ngIf="showList.length > 0; else noShows">
+<ng-container *ngIf="showList.length > 0; else noShows">
     <!-- Displaying Popular shows based on RATING -->
     <h4 class="popular-show-title">{{title}}</h4>
     <div class="scroll-menu">
-        <span *ngFor="let show of popularShowList">
+        <ng-container *ngFor="let show of popularShowList">
             <a routerLink="/details/{{show.id}}">
                 <div *ngIf="show.image;else otherImage">
                     <img src="{{show.image.medium}}" class="img-fluid rounded" alt="{{show.name}}">
@@ -17,14 +17,14 @@
                     <h6>{{noRating}}</h6>
                 </ng-template>
             </a>
-        </span>
+        </ng-container>
     </div>
     <div class="popular-shows"></div>
     <!-- Displaying Tv shows based on GENRE -->
     <div *ngFor="let show of genreShowList">
         <h4 class="genre-show-title">{{show.genre}}</h4>
         <div class="scroll-menu">
-            <span *ngFor="let show of show.show">
+            <ng-container *ngFor="let show of show.show">
                 <a routerLink="/details/{{show.id}}">
                     <div *ngIf="show.image;else otherImage">
                         <img src="{{show.image.medium}}" class="img-fluid rounded" alt="{{show.name}}">
@@ -39,12 +39,12 @@
                         <h6>{{noRating}}</h6>
                     </ng-template>
                 </a>
-            </span>
+            </ng-container>
         </div>
         <br>
     </div>
     <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
-</div>
+</ng-container>
 <ng-template #noShows>
     <div class="message popular-show-title">{{showMessage}}</div>
 </ng-template>

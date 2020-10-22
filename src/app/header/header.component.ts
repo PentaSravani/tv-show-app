@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CONSTANTS } from '../tv-show-constants';
 
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSearch(form): void {
+  onSearch(form: FormGroup): void {
     this.route.navigate(['/search/', form.value.searchShow]);
   }
 }
